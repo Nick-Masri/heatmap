@@ -157,10 +157,11 @@ rangelong = max(stationstatelong) - min(stationstatelong); % 0.0698 degrees (x)
 % 
 % scatter(pixelloclong, pixelloclat)
 
+% get width and length
 width = 640/rangelong;
-
 length = 480/rangelat;
 
+% get pixel locations
 widthpixel = width * (stationstatelong - min(stationstatelong));
 lengthpixel = length * (stationstatelat - min(stationstatelat));
 
