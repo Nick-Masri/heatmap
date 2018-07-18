@@ -233,5 +233,5 @@ scatter(widthpixel, lengthpixel, 30, 'filled')
 % text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')
 
 % logical index labels
-labels = num2str((1:size(stationids,1))','%d');
-text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')
+% labels = num2str((1:size(stationids,1))','%d');
+% text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')
