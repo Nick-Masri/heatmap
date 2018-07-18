@@ -227,5 +227,11 @@ lengthpixel = length * (stationstatelat - min(stationstatelat));
 
 % display scatter with station number labels
 scatter(widthpixel, lengthpixel, 30, 'filled')
-labels = num2str((stationids),'%d');
+
+% stationid labels
+% labels = num2str((stationids),'%d');
+% text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')
+
+% logical index labels
+labels = num2str((1:size(stationids,1))','%d');
 text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')

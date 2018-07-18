@@ -225,7 +225,13 @@ length = 480/rangelat;
 widthpixel = width * (stationstatelong - min(stationstatelong));
 lengthpixel = length * (stationstatelat - min(stationstatelat));
 
-% display scatter with station number lab
+% display scatter with station number labels
 scatter(widthpixel, lengthpixel, 30, 'filled')
+
+% stationid labels
+% labels = num2str((stationids),'%d');
+% text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')
+
+% logical inde
 labels = num2str((stationids),'%d');
 text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')
