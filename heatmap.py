@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.io as sio
 
 
 def score(eD, iV, eA, aP):
@@ -38,6 +37,7 @@ env = np.zeros((len(data3), imageWidth, imageHeight))
 
 points = []
 
+
 def degsToPixels(long, lat, max_width, max_height):
 
     rangelat = np.max(locations[:,0]) - np.min(locations[:,0])
@@ -51,12 +51,7 @@ def degsToPixels(long, lat, max_width, max_height):
     points.append([x,y])
     return np.array([x,y])
 
-
-
 pix = np.zeros((imageWidth, imageHeight,2))
-# for i, value in enumerate(data3):
-#     s = score(value[0], value[1],  value[2], value[3])
-#     coordinates = degsToPixels(value[4], value[5], imageWidth, imageHeight)
 for j in range(imageWidth):
     for k in range(imageHeight):
         pix[j][k][1] = k
@@ -82,9 +77,5 @@ Y = locations[:,0] - np.min(locations[:,0])
 Y = imageHeight*Y/np.max(Y)
 
 plt.scatter(X,Y, c = 'w')
-
-
-
 plt.show()
 
-plt.savefig('heatmap.png')
