@@ -139,6 +139,66 @@ stationstatelong = [
 137.153393
 137.163072];
 
+stationids = [
+2549
+57
+3
+2014
+9129
+40
+44
+9132
+9131
+17
+9
+9130
+100011
+7
+16
+2015
+43
+55
+49
+22
+66
+38
+9125
+20
+42
+28
+61
+2010
+47
+46
+2008
+11
+48
+9118
+10
+51
+13
+60
+1030
+69
+14
+9128
+2011
+2016
+59
+58
+2507
+9121
+67
+65
+1029
+2013
+37
+19
+70
+68
+64
+45];
+
 % find ranges of lat and long
 rangelat = max(stationstatelat) - min(stationstatelat); % 0.0947 degrees (y)
 rangelong = max(stationstatelong) - min(stationstatelong); % 0.0698 degrees (x)
@@ -157,4 +217,21 @@ rangelong = max(stationstatelong) - min(stationstatelong); % 0.0698 degrees (x)
 % 
 % scatter(pixelloclong, pixelloclat)
 
-640/ran
+% get width and length
+width = 640/rangelong;
+length = 480/rangelat;
+
+% get pixel locations
+widthpixel = width * (stationstatelong - min(stationstatelong));
+lengthpixel = length * (stationstatelat - min(stationstatelat));
+
+% display scatter with station number labels
+scatter(widthpixel, lengthpixel, 30, 'filled')
+
+% stationid labels
+% labels = num2str((stationids),'%d');
+% text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')
+
+% logical inde
+labels = num2str((stationids),'%d');
+text(widthpixel, lengthpixel, labels, 'horizontal', 'left', 'vertical', 'bottom')
