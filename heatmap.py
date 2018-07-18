@@ -87,4 +87,3 @@ plt.scatter(X,Y, c = 'w')
 
 plt.show()
 
-plt.savefig('heatmap.png')
