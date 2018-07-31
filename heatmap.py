@@ -21,10 +21,10 @@ class NaiveForecaster:
 
     def predict(self, timestamp, station_ids):
         # convert timestep intio step
-        time_now = timestamp.time()
-        step = time_now.hour * 3600. + time_now.minute * 60. + time_now.second
-        step = int(np.round((step / self.timestepsize * 60)))
-        # step = timestamp
+        # time_now = timestamp.time()
+        # step = time_now.hour * 3600. + time_now.minute * 60. + time_now.second
+        # step = int(np.round((step / self.timestepsize * 60)))
+        step = timestamp
         # initialize forecast
         forecast = np.zeros((len(station_ids), len(station_ids), self.horizon))
         # find the idx
@@ -67,7 +67,11 @@ forecaster_obj = NaiveForecaster(day_forecast_path1, timestepsize1, horizon1, id
 stations = pd.read_csv('./data/stations_state.csv').set_index('station_id')
 station_ids = stations.index.tolist()
 # set time start for predict method
-time1 = current_time % 288 # TODO: insert current_time in here for time1, value should never be over 288
+
+
+# time1 = current_time % 288 # TODO: insert current_time in here for time1, value should never be over 288, use this
+time1 = 0
+
 
 # gets prediction array
 forecast_prediction = forecaster_obj.predict(time1, station_ids)
