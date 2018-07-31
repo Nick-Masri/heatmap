@@ -21,10 +21,10 @@ class NaiveForecaster:
 
     def predict(self, timestamp, station_ids):
         # convert timestep intio step
-        # time_now = timestamp.time()
-        # step = time_now.hour * 3600. + time_now.minute * 60. + time_now.second
-        # step = int(np.round((step / self.timestepsize * 60)))
-        step = timestamp
+        time_now = timestamp.time()
+        step = time_now.hour * 3600. + time_now.minute * 60. + time_now.second
+        step = int(np.round((step / self.timestepsize * 60)))
+        # step = timestamp
         # initialize forecast
         forecast = np.zeros((len(station_ids), len(station_ids), self.horizon))
         # find the idx
@@ -67,10 +67,10 @@ forecaster_obj = NaiveForecaster(day_forecast_path1, timestepsize1, horizon1, id
 stations = pd.read_csv('./data/stations_state.csv').set_index('station_id')
 station_ids = stations.index.tolist()
 # set time start for predict method
-time = 0
+time1 = current_time % 288 # TODO: insert current_time in here for time1, value should never be over 288
 
 # gets prediction array
-forecast_prediction = forecaster_obj.predict(time, station_ids)
+forecast_prediction = forecaster_obj.predict(time1, station_ids)
 
 # print(np.shape(forecast_prediction))  # (58, 58, 12)
 # print(forecast_prediction)
@@ -85,12 +85,14 @@ for _ in range(0, 12):
 forecast_departures_demand = np.sum(demand_all, axis=1)
 forecast_arrivals_demand = np.sum(demand_all, axis=0)
 
-print(np.shape(forecast_departures_demand))  # (58,)
-print(np.shape(forecast_arrivals_demand))  # (58,)
+# print(np.shape(forecast_departures_demand))  # (58,)
+# print(np.shape(forecast_arrivals_demand))  # (58,)
 
 # df = pd.DataFrame(demand_all)
 # df.to_csv("hour_demand_forecast.csv")
 
+
+# FIXME: Code not implemented with simulator fully yet, need to figure out how to import specific data from above below
 
 
 def score(eD, iV, eA, aP):
@@ -117,9 +119,11 @@ imageWidth = 640
 imageHeight = 480
 
 data = pd.read_csv('stations_state_basic_data.csv')
-
+data["demand"] = forecast_departures_demand
+data["arrivals"] = forecast_arrivals_demand
 # 6 and 7 are lat and long
 # 0, 1, 2, and 4 are all car data
+# 0 = arrivals, 1 = available_parking, 2 = demand, 4 = idle_vehicles
 # 3, although not given, states the station ID numbers
 # For basic data, only 6 and 7 are needed, all other data will be retrieved from simulator.
 
@@ -166,7 +170,7 @@ points = np.array(points)
 
 grayscale = np.sum(env, axis=0)
 
-# plt.imshow(grayscale.T, cmap='jet')
+plt.imshow(grayscale.T, cmap='jet')
 plt.gca().invert_yaxis()
 X = locations[:, 1] - np.min(locations[:, 1])
 X = imageWidth * X/np.max(X)
@@ -174,5 +178,5 @@ Y = locations[:, 0] - np.min(locations[:, 0])
 Y = imageHeight * Y / np.max(Y)
 
 plt.scatter(X, Y, c='w')
-# plt.show()
+plt.show()
 

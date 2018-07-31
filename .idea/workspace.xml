@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2eceea0-07cd-4477-9359-8564fca15cda" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hamo_controller/backend/adhoc_scripts/get_stations_with_parking.py" beforeDir="false" afterPath="$PROJECT_DIR$/hamo_controller/backend/adhoc_scripts/get_stations_with_parking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hamo_controller/backend/adhoc_scripts/traveltimes.py" beforeDir="false" afterPath="$PROJECT_DIR$/hamo_controller/backend/adhoc_scripts/traveltimes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hamo_controller/backend/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/hamo_controller/backend/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hamo_controller/backend/config/prod.py" beforeDir="false" afterPath="$PROJECT_DIR$/hamo_controller/backend/config/prod.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hamo_controller/backend/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/hamo_controller/backend/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hamo_controller/backend/optimal_mod/modcontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/hamo_controller/backend/optimal_mod/modcontroller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hamo_controller/deploy-files/hamo-cron.py" beforeDir="false" afterPath="$PROJECT_DIR$/hamo_controller/deploy-files/hamo-cron.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/heatmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/heatmap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stations_state.csv" beforeDir="false" afterPath="$PROJECT_DIR$/stations_state_basic_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stations_state_basic_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/stations_state_basic_data.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,12 +36,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2140" />
+          <entry key="py" value="2784" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2140" />
+          <entry key="Python" value="2784" />
         </counts>
       </usages-collector>
     </session>
@@ -59,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/heatmap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="88" column="50" selection-start-line="88" selection-start-column="50" selection-end-line="88" selection-end-column="50" />
+            <state relative-caret-position="1139">
+              <caret line="69" column="104" selection-start-line="69" selection-start-column="104" selection-end-line="69" selection-end-column="104" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -109,17 +101,6 @@
             <path>
               <item name="heatmap" type="b2602c69:ProjectViewProjectNode" />
               <item name="heatmap" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="heatmap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="heatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="hamo_controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="heatmap" type="b2602c69:ProjectViewProjectNode" />
-              <item name="heatmap" type="462c0819:PsiDirectoryNode" />
-              <item name="hamo_controller" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -194,7 +175,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49960724" weight="0.32958436" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.82796544" visible="true" weight="0.3608802" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8271799" visible="true" weight="0.26356968" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49960724" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -202,7 +183,7 @@
       <window_info anchor="bottom" id="Dilbert" order="7" />
       <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.17203456" side_tool="true" visible="true" weight="0.3608802" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.1728201" side_tool="true" visible="true" weight="0.26356968" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -298,8 +279,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/heatmap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="88" column="50" selection-start-line="88" selection-start-column="50" selection-end-line="88" selection-end-column="50" />
+        <state relative-caret-position="1139">
+          <caret line="69" column="104" selection-start-line="69" selection-start-column="104" selection-end-line="69" selection-end-column="104" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
