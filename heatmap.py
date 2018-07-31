@@ -30,7 +30,7 @@ data = pd.read_csv('stations_state.csv')
 I = [0, 1, 2, 4, 6, 7]
 
 data2 = data.iloc[:, I]
-locations = data2.iloc[:, [4,5]].values
+locations = data2.iloc[:, [4, 5]].values
 # print(locations)
 data3 = data2.values
 env = np.zeros((len(data3), imageWidth, imageHeight))
@@ -46,8 +46,8 @@ def degsToPixels(long, lat, max_width, max_height):
     width = max_width / rangelong
     length = max_height / rangelat
 
-    x = width * (long - np.min(locations[:,1]))
-    y = length * (lat - np.min(locations[:,0]))
+    x = width * (long - np.min(locations[:, 1]))
+    y = length * (lat - np.min(locations[:, 0]))
     points.append([x,y])
     return np.array([x,y])
 
