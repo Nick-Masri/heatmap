@@ -58,6 +58,7 @@ class NaiveForecaster:
         return
 
     def predict(self, timestamp, station_ids):
+        # print(self.id_to_idx.keys())
         # convert timestep into step
         # time_now = timestamp.time()
         # step = time_now.hour * 3600. + time_now.minute * 60. + time_now.second
@@ -136,7 +137,7 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     forecaster_obj = NaiveForecaster(forecast_path, time_step_size, time_horizon, id_to_idx_path_map)
 
     # grab station states for predict method
-    stations = pd.read_csv('./data/stations_state.csv').set_index('station_id')
+    stations = pd.read_csv('./data/stations_state_indexed.csv').set_index('station_id')
     station_ids = stations.index.tolist()
     # set time start for predict method
 
@@ -179,7 +180,7 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     imageHeight = 480
 
     # reading in data from the static csv sample data
-    data = pd.read_csv('./data/stations_state.csv')
+    data = pd.read_csv('./data/stations_state_indexed.csv')
     data["demand"] = forecast_departures_demand  # changes data in the csv to the forecast data
     data["arrivals"] = forecast_arrivals_demand  # changes data in the csv to the forecast data
 
