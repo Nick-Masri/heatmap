@@ -181,11 +181,11 @@ X = imageWidth * X/np.max(X)
 Y = locations[:, 0] - np.min(locations[:, 0])
 Y = imageHeight * Y / np.max(Y)
 
-plt.scatter(X, Y, c='w')
-# plt.show()  # FIXME must be commented out to have the file save correctly
+plt.scatter(X, Y, c='w', marker='.')
+plt.show()  # FIXME must be commented out to have the file save correctly
 
 
-for num in range(0, 2):  # test loop to save pics with different file names
-    plt.title('Test Controller Time: %d' % num)  # adds corresponding titles to the pictures before they save
-    plt.savefig('./saved_pictures/foo%d.png' % num, bbox_inches='tight')  # saves pics with diff file names
+# for num in range(0, 2):  # test loop to save pics with different file names
+#     plt.title('Test Controller Time: %d' % num)  # adds corresponding titles to the pictures before they save
+#     plt.savefig('./saved_pictures/foo%d.png' % num, bbox_inches='tight')  # saves pics with diff file names
 
