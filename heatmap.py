@@ -123,10 +123,12 @@ def score(eD, iV, eA, aP):
     return s
 
 
+# image size settings
 imageWidth = 640
 imageHeight = 480
 
-data = pd.read_csv('stations_state_basic_data.csv')
+# reading in data from the static csv sample data
+data = pd.read_csv('./data/stations_state_basic_data.csv')
 data["demand"] = forecast_departures_demand  # changes data in the csv to the forecast data
 data["arrivals"] = forecast_arrivals_demand  # changes data in the csv to the forecast data
 
@@ -147,7 +149,7 @@ env = np.zeros((len(data3), imageWidth, imageHeight))
 points = []
 
 
-def degsToPixels(long, lat, max_width, max_height):
+def degrees_to_pixels(long, lat, max_width, max_height):
 
     rangelat = np.max(locations[:, 0]) - np.min(locations[:, 0])
     rangelong = np.max(locations[:, 1]) - np.min(locations[:, 1])
@@ -170,7 +172,7 @@ for j in range(imageWidth):
 
 for i, value in enumerate(data3):
     s = score(value[2], value[3], value[0], value[1])
-    coordinates = degsToPixels(value[5], value[4], imageWidth, imageHeight)
+    coordinates = degrees_to_pixels(value[5], value[4], imageWidth, imageHeight)
     env[i, :, :] = -.005 * ((pix[:, :, 0] - coordinates[0]) ** 2 + (pix[:, :, 1] - coordinates[1]) ** 2)
     env[i, :, :] = s * np.exp(env[i, :, :])
 
@@ -196,7 +198,7 @@ plt.show()  # FIXME must be commented out to have the file save correctly
 
 # for num in range(0, 2):  # test loop to save pics with different file names
 #     plt.title('Test Controller Time: %d' % num)  # adds corresponding titles to the pictures before they save
-#     plt.savefig('./saved_pictures/foo%d.png' % num, bbox_inches='tight')  # saves pics with diff file names
+#     plt.savefig('./saved_pictures/heatmap_test%d.png' % num, bbox_inches='tight')  # saves pics with diff file names
 
 ############################
 ############################
