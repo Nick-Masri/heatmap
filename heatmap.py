@@ -169,6 +169,7 @@ for i, value in enumerate(data3):
     env[i, :, :] = -.005 * ((pix[:, :, 0] - coordinates[0])**2 + (pix[:, :, 1] - coordinates[1])**2)
     env[i, :, :] = s * np.exp(env[i, :, :])
 
+
 points = np.array(points)
 # print(points)
 
@@ -181,7 +182,7 @@ X = imageWidth * X/np.max(X)
 Y = locations[:, 0] - np.min(locations[:, 0])
 Y = imageHeight * Y / np.max(Y)
 
-plt.scatter(X, Y, c='w', marker='.')
+plt.scatter(X, Y, s=8, c='w', marker='.')
 plt.show()  # FIXME must be commented out to have the file save correctly
 
 
