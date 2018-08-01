@@ -1,7 +1,33 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+"""
+Heatmap code takes inputs for station data, including longitude, latitude, available parking, idle vehicles, 
+arrival demand, and departure demand per station. The program then performs a calculation based on this data to give 
+each station a "score", which allows it to be placed and shown on a heatmap with other stations based on the condition
+it is in and the need for rebalancing. The more highlighted it is, the worse of a condition it is in. Ideally, all
+stations are a flat blue. It then either shows the heatmap file or saves it to a local folder, with the files being .png
+and having dimensions of 640 x 480 pixels. 
 
+INPUTS: 
+- .csv file containing ordered information for each station, including
+      longitude
+      latitude
+      available parking
+      idle vehicles
+      expected arrivals
+      expected departures
+  look at sample data given for structure needed
+
+- time start (integer)
+
+OUTPUTS:
+- shown heatmap file
+
+        OR
+
+- saved heatmap file(s)
+"""
 
 class NaiveForecaster:
     def __init__(self, day_forecast_path, timestepsize, horizon, id_to_idx_path):
