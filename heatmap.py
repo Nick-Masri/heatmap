@@ -8,7 +8,7 @@ class NaiveForecaster:
         forecaster = np.load(day_forecast_path)
         # ugly hack
         shape = forecaster.shape
-        hacky_forecaster = np.zeros((shape[0]*2, shape[1], shape[2]))
+        hacky_forecaster = np.zeros((shape[0] * 2, shape[1], shape[2]))
         hacky_forecaster[:shape[0], :, :] = forecaster
         hacky_forecaster[shape[0]:, :, :] = forecaster
         self.forecaster = hacky_forecaster
@@ -20,7 +20,7 @@ class NaiveForecaster:
         return
 
     def predict(self, timestamp, station_ids):
-        # convert timestep intio step
+        # convert timestep into step
         # time_now = timestamp.time()
         # step = time_now.hour * 3600. + time_now.minute * 60. + time_now.second
         # step = int(np.round((step / self.timestepsize * 60)))
@@ -68,10 +68,14 @@ stations = pd.read_csv('./data/stations_state.csv').set_index('station_id')
 station_ids = stations.index.tolist()
 # set time start for predict method
 
+############################
+############################
 
 # time1 = current_time % 288 # TODO: insert current_time in here for time1, value should never be over 288, use this
 time1 = 0
 
+############################
+############################
 
 # gets prediction array
 forecast_prediction = forecaster_obj.predict(time1, station_ids)
@@ -123,8 +127,9 @@ imageWidth = 640
 imageHeight = 480
 
 data = pd.read_csv('stations_state_basic_data.csv')
-data["demand"] = forecast_departures_demand
-data["arrivals"] = forecast_arrivals_demand
+data["demand"] = forecast_departures_demand  # changes data in the csv to the forecast data
+data["arrivals"] = forecast_arrivals_demand  # changes data in the csv to the forecast data
+
 # 6 and 7 are lat and long
 # 0, 1, 2, and 4 are all car data
 # 0 = arrivals, 1 = available_parking, 2 = demand, 4 = idle_vehicles
@@ -166,7 +171,7 @@ for j in range(imageWidth):
 for i, value in enumerate(data3):
     s = score(value[2], value[3], value[0], value[1])
     coordinates = degsToPixels(value[5], value[4], imageWidth, imageHeight)
-    env[i, :, :] = -.005 * ((pix[:, :, 0] - coordinates[0])**2 + (pix[:, :, 1] - coordinates[1])**2)
+    env[i, :, :] = -.005 * ((pix[:, :, 0] - coordinates[0]) ** 2 + (pix[:, :, 1] - coordinates[1]) ** 2)
     env[i, :, :] = s * np.exp(env[i, :, :])
 
 
@@ -186,7 +191,12 @@ plt.scatter(X, Y, s=8, c='w', marker='.')
 plt.show()  # FIXME must be commented out to have the file save correctly
 
 
+############################
+############################
+
 # for num in range(0, 2):  # test loop to save pics with different file names
 #     plt.title('Test Controller Time: %d' % num)  # adds corresponding titles to the pictures before they save
 #     plt.savefig('./saved_pictures/foo%d.png' % num, bbox_inches='tight')  # saves pics with diff file names
 
+############################
+############################
