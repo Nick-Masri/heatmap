@@ -238,13 +238,13 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     ############################
     ############################
 
-    # for num in range(0, 2):  # test loop to save pics with different file names
-        # plt.title('Test Controller Time: %d' % num)  # adds corresponding titles to the pictures before they save
-        # plt.savefig('./saved_pictures/heatmap_test%d.png' % num, bbox_inches='tight')  # saves pics with diff file names
+
+    plt.title('Test Controller Time: %d' % current_time)  # adds corresponding titles to the pictures before they save
+    plt.savefig('./saved_pictures/heatmap_test%d.png' % current_time, bbox_inches='tight')  # saves pics with diff file names
 
     ############################
     ############################
 
 
-heatmap_run(0, [], [])  # test function run
+# heatmap_run(0, [], [])  # test function run
 
