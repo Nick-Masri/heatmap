@@ -54,8 +54,8 @@ class NaiveForecaster:
         # initialize forecast
         forecast = np.zeros((len(station_ids), len(station_ids), self.horizon))
         # find the idx
-        f_index = [] # for which stations do we have a forecast
-        new_index = [] # what is their equivalent in the estimator
+        f_index = []  # for which stations do we have a forecast
+        new_index = []  # what is their equivalent in the estimator
         for i, station_id in enumerate(station_ids):
             if str(station_id) in self.id_to_idx.keys():
                 f_index.append(i)
@@ -66,28 +66,23 @@ class NaiveForecaster:
         # I hope there was a faster way
         # q = self._get_min_q(self.forecaster, step)
         for i in range(self.horizon):
-            # forecast[:, :, i][f_idx] = poisson.ppf(
-            #    q,
-            #    self.forecaster[step+i, :, :][idx]
-            #    )
+            # forecast[:, :, i][f_idx] = poisson.ppf(q,self.forecaster[step+i, :, :][idx])
             forecast[:, :, i][f_idx] = self.forecaster[step+i, :, :][idx]
         # print('Forecasted demand: {}'.format(forecast.sum()))
         return forecast
 
 
-# raw_requests = np.load('./data/10_days/hamo10days.npy')
-
 # get mean demand for forecaster
-day_forecast_path1 = './data/mean_demand_weekday_5min.npy'
+forecast_path = './data/mean_demand_weekday_5min.npy'
 # enter timestepsize
-timestepsize1 = 5
+time_step_size = 5
 # time horizon
-horizon1 = 12
+time_horizon = 12
 # grab station_mapping for forecaster
-id_to_idx_path1 = './data/10_days/station_mapping.npy'
+id_to_idx_path_map = './data/10_days/station_mapping.npy'
 
 # initializes naive forecaster
-forecaster_obj = NaiveForecaster(day_forecast_path1, timestepsize1, horizon1, id_to_idx_path1)
+forecaster_obj = NaiveForecaster(forecast_path, time_step_size, time_horizon, id_to_idx_path_map)
 
 # grab station states for predict method
 stations = pd.read_csv('./data/stations_state.csv').set_index('station_id')
@@ -97,14 +92,14 @@ station_ids = stations.index.tolist()
 ############################
 ############################
 
-# time1 = current_time % 288 # TODO: insert current_time in here for time1, value should never be over 288, use this
-time1 = 0
+# start_time = current_time % 288 # TODO: insert current_time in here for time1, value should never be over 288, use this
+start_time = 0
 
 ############################
 ############################
 
 # gets prediction array
-forecast_prediction = forecaster_obj.predict(time1, station_ids)
+forecast_prediction = forecaster_obj.predict(start_time, station_ids)
 
 # print(np.shape(forecast_prediction))  # (58, 58, 12)
 # print(forecast_prediction)
