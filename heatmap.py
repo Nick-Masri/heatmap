@@ -21,6 +21,16 @@ INPUTS:
 
 - time start (integer)
 
+        OR
+        
+- time start (integer)
+
+- (58,) ordered list of idle_vehicles
+
+- (58,) ordered list of available_parking
+
+All 3 inputs going into heatmap_run(current_time, idle_vehicles, available_parking)
+
 OUTPUTS:
 - shown heatmap file
 
@@ -28,6 +38,8 @@ OUTPUTS:
 
 - saved heatmap file(s)
 """
+
+points = []
 
 class NaiveForecaster:
     def __init__(self, day_forecast_path, timestepsize, horizon, id_to_idx_path):
@@ -72,58 +84,6 @@ class NaiveForecaster:
         return forecast
 
 
-# get mean demand for forecaster
-forecast_path = './data/mean_demand_weekday_5min.npy'
-# enter timestepsize
-time_step_size = 5
-# time horizon
-time_horizon = 12
-# grab station_mapping for forecaster
-id_to_idx_path_map = './data/10_days/station_mapping.npy'
-
-# initializes naive forecaster
-forecaster_obj = NaiveForecaster(forecast_path, time_step_size, time_horizon, id_to_idx_path_map)
-
-# grab station states for predict method
-stations = pd.read_csv('./data/stations_state.csv').set_index('station_id')
-station_ids = stations.index.tolist()
-# set time start for predict method
-
-############################
-############################
-
-# start_time = current_time % 288 # TODO: insert current_time in here for time1, value should never be over 288, use this
-start_time = 0
-
-############################
-############################
-
-# gets prediction array
-forecast_prediction = forecaster_obj.predict(start_time, station_ids)
-
-# print(np.shape(forecast_prediction))  # (58, 58, 12)
-# print(forecast_prediction)
-
-# gets total demand for each station for the next 12 timesteps
-demand_all = np.zeros([58, 58])
-for _ in range(0, 12):
-    demand_all = demand_all + np.sum(forecast_prediction, axis=2)
-# print(np.shape(demand_all)) (58, 58)
-# print(demand_all)
-
-forecast_departures_demand = np.sum(demand_all, axis=1)
-forecast_arrivals_demand = np.sum(demand_all, axis=0)
-
-# print(np.shape(forecast_departures_demand))  # (58,)
-# print(np.shape(forecast_arrivals_demand))  # (58,)
-
-# df = pd.DataFrame(demand_all)
-# df.to_csv("hour_demand_forecast.csv")
-
-
-# FIXME: Code not implemented with simulator fully yet, need to figure out how to import specific data from above below
-
-
 def score(eD, iV, eA, aP):
 
     demandOut = eD - iV
@@ -144,33 +104,7 @@ def score(eD, iV, eA, aP):
     return s
 
 
-# image size settings
-imageWidth = 640
-imageHeight = 480
-
-# reading in data from the static csv sample data
-data = pd.read_csv('./data/stations_state_basic_data.csv')
-data["demand"] = forecast_departures_demand  # changes data in the csv to the forecast data
-data["arrivals"] = forecast_arrivals_demand  # changes data in the csv to the forecast data
-
-# 6 and 7 are lat and long
-# 0, 1, 2, and 4 are all car data
-# 0 = arrivals, 1 = available_parking, 2 = demand, 4 = idle_vehicles
-# 3, although not given, states the station ID numbers
-# For basic data, only 6 and 7 are needed, all other data will be retrieved from simulator.
-
-I = [0, 1, 2, 4, 6, 7]
-
-data2 = data.iloc[:, I]
-locations = data2.iloc[:, [4, 5]].values
-# print(locations)
-data3 = data2.values
-env = np.zeros((len(data3), imageWidth, imageHeight))
-
-points = []
-
-
-def degrees_to_pixels(long, lat, max_width, max_height):
+def degrees_to_pixels(long, lat, max_width, max_height, locations):
 
     rangelat = np.max(locations[:, 0]) - np.min(locations[:, 0])
     rangelong = np.max(locations[:, 1]) - np.min(locations[:, 1])
@@ -184,42 +118,132 @@ def degrees_to_pixels(long, lat, max_width, max_height):
     return np.array([x, y])
 
 
-pix = np.zeros((imageWidth, imageHeight, 2))
-for j in range(imageWidth):
-    for k in range(imageHeight):
-        pix[j][k][1] = k
-        pix[j][k][0] = j
+def heatmap_run(current_time, idle_vehicles, available_parking):
+
+    # grab station_mapping for forecaster
+    id_to_idx_path_map = './data/10_days/station_mapping.npy'
+    # get mean demand for forecaster
+    forecast_path = './data/mean_demand_weekday_5min.npy'
 
 
-for i, value in enumerate(data3):
-    s = score(value[2], value[3], value[0], value[1])
-    coordinates = degrees_to_pixels(value[5], value[4], imageWidth, imageHeight)
-    env[i, :, :] = -.005 * ((pix[:, :, 0] - coordinates[0]) ** 2 + (pix[:, :, 1] - coordinates[1]) ** 2)
-    env[i, :, :] = s * np.exp(env[i, :, :])
+    # enter timestepsize
+    time_step_size = 5
+    # time horizon
+    time_horizon = 12
 
 
-points = np.array(points)
-# print(points)
+    # initializes naive forecaster
+    forecaster_obj = NaiveForecaster(forecast_path, time_step_size, time_horizon, id_to_idx_path_map)
 
-grayscale = np.sum(env, axis=0)
+    # grab station states for predict method
+    stations = pd.read_csv('./data/stations_state.csv').set_index('station_id')
+    station_ids = stations.index.tolist()
+    # set time start for predict method
 
-plt.imshow(grayscale.T, cmap='jet')
-plt.gca().invert_yaxis()
-X = locations[:, 1] - np.min(locations[:, 1])
-X = imageWidth * X/np.max(X)
-Y = locations[:, 0] - np.min(locations[:, 0])
-Y = imageHeight * Y / np.max(Y)
+    ############################
+    ############################
 
-plt.scatter(X, Y, s=8, c='w', marker='.')
-plt.show()  # FIXME must be commented out to have the file save correctly
+    start_time = current_time % 288 # TODO: insert current_time in here for time1, value should never be over 288, use this
+    # start_time = 0
+
+    ############################
+    ############################
+
+    # gets prediction array
+    forecast_prediction = forecaster_obj.predict(start_time, station_ids)
+
+    # print(np.shape(forecast_prediction))  # (58, 58, 12)
+    # print(forecast_prediction)
+
+    # gets total demand for each station for the next 12 timesteps
+    demand_all = np.zeros([58, 58])
+    for _ in range(0, 12):
+        demand_all = demand_all + np.sum(forecast_prediction, axis=2)
+    # print(np.shape(demand_all)) (58, 58)
+    # print(demand_all)
+
+    forecast_departures_demand = np.sum(demand_all, axis=1)
+    forecast_arrivals_demand = np.sum(demand_all, axis=0)
+
+    # print(np.shape(forecast_departures_demand))  # (58,)
+    # print(np.shape(forecast_arrivals_demand))  # (58,)
+
+    # df = pd.DataFrame(demand_all)
+    # df.to_csv("hour_demand_forecast.csv")
 
 
-############################
-############################
+    # FIXME: Code not implemented with simulator fully yet, need to figure out how to import specific data from above below
 
-# for num in range(0, 2):  # test loop to save pics with different file names
-#     plt.title('Test Controller Time: %d' % num)  # adds corresponding titles to the pictures before they save
-#     plt.savefig('./saved_pictures/heatmap_test%d.png' % num, bbox_inches='tight')  # saves pics with diff file names
+    # image size settings
+    imageWidth = 640
+    imageHeight = 480
 
-############################
-############################
+    # reading in data from the static csv sample data
+    data = pd.read_csv('./data/stations_state_basic_data.csv')
+    data["demand"] = forecast_departures_demand  # changes data in the csv to the forecast data
+    data["arrivals"] = forecast_arrivals_demand  # changes data in the csv to the forecast data
+
+    if np.shape(available_parking) != (0,):
+        data["available_parking"] = available_parking
+    if np.shape(idle_vehicles) != (0,):
+        data["idle_vehicles"] = idle_vehicles
+
+    # 6 and 7 are lat and long
+    # 0, 1, 2, and 4 are all car data
+    # 0 = arrivals, 1 = available_parking, 2 = demand, 4 = idle_vehicles
+    # 3, although not given, states the station ID numbers
+    # For basic data, only 6 and 7 are needed, all other data will be retrieved from simulator.
+
+    I = [0, 1, 2, 4, 6, 7]
+
+    data2 = data.iloc[:, I]
+    locations = data2.iloc[:, [4, 5]].values
+    # print(locations)
+    data3 = data2.values
+    env = np.zeros((len(data3), imageWidth, imageHeight))
+
+    points = []
+
+    pix = np.zeros((imageWidth, imageHeight, 2))
+    for j in range(imageWidth):
+        for k in range(imageHeight):
+            pix[j][k][1] = k
+            pix[j][k][0] = j
+
+
+    for i, value in enumerate(data3):
+        s = score(value[2], value[3], value[0], value[1])
+        coordinates = degrees_to_pixels(value[5], value[4], imageWidth, imageHeight, locations)
+        env[i, :, :] = -.005 * ((pix[:, :, 0] - coordinates[0]) ** 2 + (pix[:, :, 1] - coordinates[1]) ** 2)
+        env[i, :, :] = s * np.exp(env[i, :, :])
+
+
+    points = np.array(points)
+    # print(points)
+
+    grayscale = np.sum(env, axis=0)
+
+    plt.imshow(grayscale.T, cmap='jet')
+    plt.gca().invert_yaxis()
+    X = locations[:, 1] - np.min(locations[:, 1])
+    X = imageWidth * X/np.max(X)
+    Y = locations[:, 0] - np.min(locations[:, 0])
+    Y = imageHeight * Y / np.max(Y)
+
+    plt.scatter(X, Y, s=8, c='w', marker='.')
+    plt.show()  # FIXME must be commented out to have the file save correctly
+
+
+    ############################
+    ############################
+
+    # for num in range(0, 2):  # test loop to save pics with different file names
+        # plt.title('Test Controller Time: %d' % num)  # adds corresponding titles to the pictures before they save
+        # plt.savefig('./saved_pictures/heatmap_test%d.png' % num, bbox_inches='tight')  # saves pics with diff file names
+
+    ############################
+    ############################
+
+
+heatmap_run(0, [], [])  # test function run
+
