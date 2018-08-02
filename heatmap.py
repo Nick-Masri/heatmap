@@ -231,6 +231,13 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     Y = locations[:, 0] - np.min(locations[:, 0])
     Y = imageHeight * Y / np.max(Y)
 
+    # fig, ax = plt.subplots()
+    # ax.scatter(X, Y, s=8, c='w', marker='.')
+    # n = data.iloc[:, 3]
+    # for i, txt in enumerate(n):
+        # ax.annotate(txt, (X[i], Y[i]))
+
+
     plt.scatter(X, Y, s=8, c='w', marker='.')
     plt.show()  # FIXME must be commented out to have the file save correctly
 
@@ -238,13 +245,16 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     ############################
     ############################
 
-
-    plt.title('Test Controller Time: %d' % current_time)  # adds corresponding titles to the pictures before they save
-    plt.savefig('./saved_pictures/heatmap_test%d.png' % current_time, bbox_inches='tight')  # saves pics with diff file names
+    # plt.title('Test Controller Time: %d' % current_time)  # adds corresponding titles to the pictures before they save
+    # plt.savefig('./saved_pictures/heatmap_test%d.png' % current_time, bbox_inches='tight')  # saves pics with diff file names
 
     ############################
     ############################
 
 
-# heatmap_run(0, [], [])  # test function run
+heatmap_run(0, [], [])  # test function run
+
+# score(eD, iV, eA, aP)
+# print(score(5.7, 1, 0.7, 4))
+# print(score(0.2, 1, 0, 1))
 
