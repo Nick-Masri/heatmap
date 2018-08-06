@@ -172,8 +172,7 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     # df = pd.DataFrame(demand_all)
     # df.to_csv("hour_demand_forecast.csv")
 
-
-    # FIXME: Code not implemented with simulator fully yet, need to figure out how to import specific data from above below
+    # FIXME: Code not implemented with simulator fully yet, figure out how to import specific data from above below
 
     # image size settings
     imageWidth = 640
@@ -252,9 +251,11 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     ############################
 
 
-heatmap_run(0, [], [])  # test function run
+# heatmap_run(0, [], [])  # test function run
 
 # score(eD, iV, eA, aP)
 # print(score(5.7, 1, 0.7, 4))
 # print(score(0.2, 1, 0, 1))
+
+print(np.shape(np.load("./data/input_data/available_parking.npy")))
 
