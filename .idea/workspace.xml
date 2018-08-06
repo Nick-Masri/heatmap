@@ -35,12 +35,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="6028" />
+          <entry key="py" value="6507" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="6028" />
+          <entry key="Python" value="6507" />
         </counts>
       </usages-collector>
     </session>
@@ -50,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/heatmap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
-              <caret line="188" column="45" selection-start-line="188" selection-start-column="45" selection-end-line="188" selection-end-column="45" />
+            <state relative-caret-position="919">
+              <caret line="228" column="49" lean-forward="true" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -182,13 +182,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-3840" y="-374" width="3840" height="2137" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.061534435" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4993454" weight="0.32958436" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8261325" visible="true" weight="0.04987775" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8261325" visible="true" weight="0.109535456" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4993454" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -196,7 +197,7 @@
       <window_info anchor="bottom" id="Dilbert" order="7" />
       <window_info anchor="bottom" id="Python Console" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.17386751" side_tool="true" visible="true" weight="0.04987775" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.17386751" side_tool="true" visible="true" weight="0.109535456" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -233,8 +234,8 @@
     <entry file="file://$PROJECT_DIR$/hamo_controller/backend/controller.py" />
     <entry file="file://$PROJECT_DIR$/heatmap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
-          <caret line="188" column="45" selection-start-line="188" selection-start-column="45" selection-end-line="188" selection-end-column="45" />
+        <state relative-caret-position="919">
+          <caret line="228" column="49" lean-forward="true" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
         </state>
       </provider>
     </entry>

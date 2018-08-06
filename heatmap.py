@@ -40,6 +40,7 @@ OUTPUTS:
 """
 
 points = []
+jst = np.load("data/10_days/time10days.npy")
 
 class NaiveForecaster:
     def __init__(self, day_forecast_path, timestepsize, horizon, id_to_idx_path):
@@ -238,24 +239,29 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
 
 
     plt.scatter(X, Y, s=8, c='w', marker='.')
-    plt.show()  # FIXME must be commented out to have the file save correctly
+    # plt.show()  # FIXME must be commented out to have the file save correctly
 
 
     ############################
     ############################
 
-    # plt.title('Test Controller Time: %d' % current_time)  # adds corresponding titles to the pictures before they save
-    # plt.savefig('./saved_pictures/heatmap_test%d.png' % current_time, bbox_inches='tight')  # saves pics with diff file names
+    plt.title('Optimal Time of Day: {}'.format(jst[current_time].time()))  # adds corresponding titles
+    plt.savefig('./saved_pictures/heatmap_test%d.png' % current_time, bbox_inches='tight')  # saves pics with diff names
 
     ############################
     ############################
+
+    print(current_time)
 
 
 # heatmap_run(0, [], [])  # test function run
 
-# score(eD, iV, eA, aP)
-# print(score(5.7, 1, 0.7, 4))
-# print(score(0.2, 1, 0, 1))
 
-print(np.shape(np.load("./data/input_data/available_parking.npy")))
+avail_park = np.load("./data/input_data/available_parking.npy")
+idle_vehi = np.load("./data/input_data/idle_vehicles.npy")
 
+total_timesteps = avail_park.size / 58
+
+for timestep in range(0, int(total_timesteps)):
+    if timestep % 6 == 0:
+        heatmap_run(timestep, idle_vehi[timestep], avail_park[timestep])
