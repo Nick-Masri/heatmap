@@ -256,6 +256,3 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
 # score(eD, iV, eA, aP)
 # print(score(5.7, 1, 0.7, 4))
 # print(score(0.2, 1, 0, 1))
-
-print(np.shape(np.load("./data/input_data/available_parking.npy")))
-
