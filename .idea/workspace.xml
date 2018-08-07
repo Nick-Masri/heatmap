@@ -49,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/heatmap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="200" column="44" lean-forward="true" selection-start-line="200" selection-start-column="44" selection-end-line="200" selection-end-column="44" />
+            <state relative-caret-position="839">
+              <caret line="228" column="49" lean-forward="true" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -87,8 +87,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-3840" />
     <option name="y" value="-374" />
-    <option name="width" value="1440" />
-    <option name="height" value="808" />
+    <option name="width" value="3840" />
+    <option name="height" value="2137" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -233,8 +233,8 @@
     <entry file="file://$PROJECT_DIR$/hamo_controller/backend/controller.py" />
     <entry file="file://$PROJECT_DIR$/heatmap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="200" column="44" lean-forward="true" selection-start-line="200" selection-start-column="44" selection-end-line="200" selection-end-column="44" />
+        <state relative-caret-position="839">
+          <caret line="228" column="49" lean-forward="true" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
         </state>
       </provider>
     </entry>
