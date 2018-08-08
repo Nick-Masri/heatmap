@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 """
 Heatmap code takes inputs for station data, including longitude, latitude, available parking, idle vehicles, 
 arrival demand, and departure demand per station. The program then performs a calculation based on this data to give 
@@ -41,6 +42,8 @@ OUTPUTS:
 
 points = []
 jst = np.load("data/10_days/time10days.npy")
+
+custom_map_image = plt.imread("./data/hamo_custom_map_814x1348.png")
 
 class NaiveForecaster:
     def __init__(self, day_forecast_path, timestepsize, horizon, id_to_idx_path):
@@ -176,8 +179,8 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     # FIXME: Code not implemented with simulator fully yet, figure out how to import specific data from above below
 
     # image size settings
-    imageWidth = 640
-    imageHeight = 480
+    imageWidth = 814
+    imageHeight = 1348
 
     # reading in data from the static csv sample data
     data = pd.read_csv('./data/stations_state_indexed.csv')
@@ -236,9 +239,10 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     # n = data.iloc[:, 3]
     # for i, txt in enumerate(n):
         # ax.annotate(txt, (X[i], Y[i]))
-
-
-    plt.scatter(X, Y, s=8, c='w', marker='.')
+    fig, ax = plt.subplots()
+    custom_map_image_masked = np.ma.masked_where(custom_map_image < 0, custom_map_image)
+    imgplot1 = ax.imshow(custom_map_image_masked, interpolation='none')
+    imgplot2 = ax.scatter(X, Y, s=8, c='w', marker='.')
     # plt.show()  # FIXME must be commented out to have the file save correctly
 
 
