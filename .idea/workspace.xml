@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2eceea0-07cd-4477-9359-8564fca15cda" name="Default" comment="" />
+    <list default="true" id="d2eceea0-07cd-4477-9359-8564fca15cda" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/heatmap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="839">
-              <caret line="228" column="49" lean-forward="true" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
+            <state relative-caret-position="1542">
+              <caret line="265" column="25" lean-forward="true" selection-start-line="265" selection-start-column="25" selection-end-line="265" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -84,10 +86,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-3840" />
     <option name="y" value="-374" />
-    <option name="width" value="3840" />
+    <option name="width" value="2394" />
     <option name="height" value="2137" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -180,10 +182,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3840" y="-374" width="3840" height="2137" extended-state="6" />
+    <frame x="-3840" y="-374" width="2394" height="2137" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.061534435" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09903076" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -233,8 +235,8 @@
     <entry file="file://$PROJECT_DIR$/hamo_controller/backend/controller.py" />
     <entry file="file://$PROJECT_DIR$/heatmap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="839">
-          <caret line="228" column="49" lean-forward="true" selection-start-line="228" selection-start-column="49" selection-end-line="228" selection-end-column="49" />
+        <state relative-caret-position="1542">
+          <caret line="265" column="25" lean-forward="true" selection-start-line="265" selection-start-column="25" selection-end-line="265" selection-end-column="25" />
         </state>
       </provider>
     </entry>
