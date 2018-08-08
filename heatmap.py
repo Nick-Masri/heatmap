@@ -43,7 +43,7 @@ OUTPUTS:
 points = []
 jst = np.load("data/10_days/time10days.npy")
 
-custom_map_image = plt.imread("./data/hamo_custom_map_814x1348.png")
+custom_map_image = plt.imread("./data/hamo_custom_map_814x1348_trans.png")
 
 class NaiveForecaster:
     def __init__(self, day_forecast_path, timestepsize, horizon, id_to_idx_path):
@@ -179,8 +179,8 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     # FIXME: Code not implemented with simulator fully yet, figure out how to import specific data from above below
 
     # image size settings
-    imageWidth = 814
-    imageHeight = 1348
+    imageWidth = int(814)
+    imageHeight = int(1348)
 
     # reading in data from the static csv sample data
     data = pd.read_csv('./data/stations_state_indexed.csv')
@@ -227,8 +227,7 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
 
     grayscale = np.sum(env, axis=0)
 
-    plt.imshow(grayscale.T, cmap='jet')
-    plt.gca().invert_yaxis()
+
     X = locations[:, 1] - np.min(locations[:, 1])
     X = imageWidth * X/np.max(X)
     Y = locations[:, 0] - np.min(locations[:, 0])
@@ -241,8 +240,12 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
         # ax.annotate(txt, (X[i], Y[i]))
     fig, ax = plt.subplots()
     custom_map_image_masked = np.ma.masked_where(custom_map_image < 0, custom_map_image)
-    imgplot1 = ax.imshow(custom_map_image_masked, interpolation='none')
-    imgplot2 = ax.scatter(X, Y, s=8, c='w', marker='.')
+
+    plt.imshow(grayscale.T, cmap='jet')
+    plt.gca().invert_yaxis()
+    imgplot2 = ax.scatter(X, Y, s=8, c='b', marker='.')
+    # imgplot1 = ax.imshow(custom_map_image_masked, interpolation='none')
+    # plt.scatter(X, Y, s=16, c='w', marker='.')
     # plt.show()  # FIXME must be commented out to have the file save correctly
 
 
@@ -250,7 +253,7 @@ def heatmap_run(current_time, idle_vehicles, available_parking):
     ############################
 
     plt.title('Optimal Time of Day: {}'.format(jst[current_time].time()))  # adds corresponding titles
-    plt.savefig('./saved_pictures/heatmap_test%d.png' % current_time, bbox_inches='tight')  # saves pics with diff names
+    plt.savefig('./saved_pictures/heatmap_test%d.png' % current_time, bbox_inches='tight', dpi=400, transparent=True)  # saves pics with diff names
 
     ############################
     ############################
