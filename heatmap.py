@@ -270,5 +270,7 @@ idle_vehi = np.load("./data/input_data/idle_vehicles.npy")
 total_timesteps = avail_park.size / 58
 
 for timestep in range(0, int(total_timesteps)):
+    if timestep == 288:
+        break
     if timestep % 6 == 0:
         heatmap_run(timestep, idle_vehi[timestep], avail_park[timestep])
